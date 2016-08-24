@@ -1,0 +1,40 @@
+{
+    "node": true,
+    "esnext": true,
+    "bitwise": true,
+    "camelcase": false,
+    "curly": true,
+    "eqeqeq": true,
+    "immed": true,
+    "latedef": false,
+    "newcap": false,
+    "noarg": true,
+    "quotmark": false,
+    "undef": false,
+    "unused": false,
+    "strict": true,
+    "trailing": false,
+    "smarttabs": true,
+    "white": false,
+    "globals": {
+        "requestAnimationFrame": false,
+        "angular": true,
+        "browser": false,
+        "describe": false,
+        "beforeEach": false,
+        "inject": false,
+        "expect": false,
+        "it": false,
+        "window": false,
+        "app": false,
+        "document": false,
+        "alert": false,
+        "jasmine": false,
+        "jquery": true,
+        "$": true,
+        "mocha": true,
+        "open": true
+
+    }
+
+}
