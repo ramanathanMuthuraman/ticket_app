@@ -1,15 +1,12 @@
 'use strict';
-
-
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
-
 var PORT = 9000;
 
 module.exports = {
-    entry: __dirname + "/app/",
+    entry: __dirname + "/src/app/",
     output: {
         path: __dirname + "/dist",
         filename: "bundle.js"

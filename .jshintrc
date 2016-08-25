@@ -23,7 +23,7 @@
         "describe": false,
         "beforeEach": false,
         "inject": false,
-        "expect": false,
+        "expect": true,
         "it": false,
         "window": false,
         "app": false,
