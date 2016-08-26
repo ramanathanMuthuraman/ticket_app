@@ -1,0 +1,144 @@
+@import 'variable.less';
+@import 'utility.less';
+body {
+    font-size: 62.5%;
+}
+
+#header {
+    background: @header-background-color;
+    height: @header-height;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10001;
+}
+
+#header .logo {
+    left: 10%;
+    top: 10%;
+    position: absolute;
+    color: #fff;
+    text-decoration: none;
+    background: url('../img/aeroplane.png') no-repeat;
+    padding-left: 60px;
+}
+
+.main_title {
+    font-size: @extra-large-font-size;
+}
+
+.description {
+    font-size: @small-font-size;
+}
+
+.tab-active-radio {
+    display: none;
+}
+
+.tab-header {
+    padding: @element-padding;
+    word-wrap: break-word;
+    font-size: @large-font-size;
+    display: block;
+    width: @tab-width;
+    cursor: pointer;
+    background-color: @secondary-color;
+    color: @color-white;
+    text-align: center;
+    border: 1px solid @color-white;
+    transition: background .3s, color .15s, box-shadow .3s, opacity 0.3s;
+}
+
+.tab-header:hover {
+    background: @tab-hover-color;
+    color: @color-black;
+}
+
+.tab-container .tab-active-radio:checked + .tab-header {
+    background: @panel-color;
+    color: @color-white;
+    border-bottom: none;
+}
+
+.tab-container {
+    .flex-row;
+}
+
+.search-area {
+    .flex-column;
+    width: @width-small;
+    background-color: @panel-color;
+    padding: @element-padding;
+}
+
+.result-area {
+    width: @width-large;
+}
+
+.content {
+    .flex-row;
+    margin-top: @header-height;
+}
+
+.results {
+    padding: @element-padding @element-padding 0 @element-padding;
+}
+
+.content .secondary-title {
+    font-size: @large-font-size;
+    text-align: left;
+    margin-top: @element-padding;
+    border-bottom: 2px solid @panel-color;
+}
+
+.form-area {
+    padding: @element-padding-large;
+    border: 1px solid @color-white;
+    border-top: none;
+    .flex-column;
+}
+
+.form-label {
+    word-wrap: break-word;
+    font-size: @medium-font-size;
+    color: @color-white;
+    margin: @element-margin 0;
+}
+
+.form-input {
+    border-radius: 3px;
+    padding: @element-padding;
+    font-size: @medium-font-size;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+    transition: all 0.5s linear;
+    outline: none;
+    height: @input-height;
+    border: 1px solid #ccc;
+}
+
+.form-button {
+    margin-top: @element-padding-large;
+    font-size: @medium-font-size;
+    padding: @element-padding;
+    text-decoration: none;
+    background: @primary-color;
+    color: @color-white;
+    outline: none;
+    border: 1px solid darken(@primary-color, 20%);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.5s linear;
+    box-shadow: 0 4px darken(@primary-color, 20%);
+}
+
+.form-button:active {
+    box-shadow: 0 2px darken(@primary-color, 60%);
+    transform: translateY(2px);
+}
+
+.form-input:focus {
+    border: 1px solid rgba(91, 90, 90, 0.7);
+    background: rgb(238, 236, 240);
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}

@@ -1,7 +1,7 @@
 'use strict';
 
-require('../../assets/css/reset.less');
-require('../../assets/css/style.less');
+require('../../assets/style/reset.less');
+require('../../assets/style/app.less');
 var ticketHereApp = require('./ticketHereApp.js');
 
 ticketHereApp.init();
