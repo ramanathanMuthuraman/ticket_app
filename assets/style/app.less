@@ -1,5 +1,7 @@
 @import 'variable.less';
 @import 'utility.less';
+@import 'flatpickr.override.less';
+@import 'jRange.override.less';
 body {
     font-size: 62.5%;
 }
@@ -78,6 +80,8 @@ body {
 
 .content {
     .flex-row;
+    overflow-y: auto;
+    min-height: 800px;
     margin-top: @header-height;
 }
 
@@ -96,6 +100,10 @@ body {
     padding: @element-padding-large;
     border: 1px solid @color-white;
     border-top: none;
+    .flex-column;
+}
+
+.form-serch {
     .flex-column;
 }
 
@@ -141,4 +149,18 @@ body {
     border: 1px solid rgba(91, 90, 90, 0.7);
     background: rgb(238, 236, 240);
     box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}
+
+.price-filter-area {
+    margin-top: @element-margin-large;
+    padding: @element-padding-large;
+    border: 1px solid @color-white;
+    height: 20%;
+    color: @color-white;
+}
+
+.price-filter-area h2 {
+    font-size: @large-font-size;
+    margin-bottom: @element-margin-large;
+    color: @color-white;
 }

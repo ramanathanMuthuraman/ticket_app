@@ -13,17 +13,23 @@
             <label class="tab-header" for="tab2"><span>Return</span></label>
         </div>
         <div class="form-area">
-            <label class="form-label">Enter Origin</label>
-            <input class="form-input" type="text/">
-            <label class="form-label">Enter Destination</label>
-            <input class="form-input" type="text/">
-            <label class="form-label">Enter Departure Date</label>
-            <input class="form-input" type="text/">
-            <label class="form-label">Enter Return Date</label>
-            <input class="form-input" type="text/">
-            <label class="form-label">Passengers</label>
-            <input class="form-input" type="text/">
-            <input class="form-button" type="button" value="Search"></input>
+            <form class="form-serch">
+                <label class="form-label">Enter Origin</label>
+                <input class="form-input" type="text/">
+                <label class="form-label">Enter Destination</label>
+                <input class="form-input" type="text/">
+                <label class="form-label">Enter Departure Date</label>
+                <input class="form-input form-departureDateTime" type="text/">
+                <label class="form-label">Enter Return Date</label>
+                <input class="form-input form-returnDateTime" type="text/">
+                <label class="form-label">Passengers</label>
+                <input class="form-input" type="text/">
+                <input class="form-button" type="button" value="Search"></input>
+            </form>
+        </div>
+        <div class="price-filter-area">
+            <h2>Refine Flight Search</h2>
+            <input type="hidden" class="slider-input" value="23" />
         </div>
     </section>
     <section class="result-area">

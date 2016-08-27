@@ -14,7 +14,9 @@ module.exports = {
     resolve: {
         alias: {
             'jquery': __dirname + '/bower_components/jquery/dist/jquery.js',
-            'lodash': __dirname + '/bower_components/lodash/lodash.js'
+            'lodash': __dirname + '/bower_components/lodash/lodash.js',
+            'flatpickr': __dirname + '/bower_components/flatpickr/dist/flatpickr.js',
+            'jRange': __dirname + '/bower_components/jRange/jquery.range.js'
         }
     },
     devServer: {
