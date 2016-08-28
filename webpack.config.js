@@ -57,7 +57,7 @@ module.exports = {
         }]
     },
     plugins: [
-        // new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+        new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
         new CopyWebpackPlugin([
             { from: 'flight_data.json', to: 'flight_data.json' }
         ]),
