@@ -5,22 +5,40 @@ var autoComplete = require('autoComplete');
 var _ = require('lodash');
 var Flatpickr = require('flatpickr');
 var jRange = require('jRange');
+var moment = require('moment');
+
 var ticketHereApp = {
     init: function() {
-        this.loadData();
+        this.loadAutoCompleteData();
         $("#main").html(layoutTemplate);
-        this.loadAutoComplete();
+        this.createAutoComplete();
         this.createDateTimePicker();
         this.createPriceSlider();
         this.setDimension();
         this.resultData = [];
         this.bindEvents();
     },
+    callAjax: function(options) {
+        $.when($.ajax(options.url))
+            .then(options.successCallback.bind(this), this.errorCallback.bind(this));
+    },
+    loadAutoCompleteData: function() {
+        var options = {
+            url: 'flight_data.json',
+            successCallback: this.createAutoComplete
+        };
+        this.callAjax(options);
+    },
     bindEvents: function() {
         $('.tab-header').on('click', this.tabClick.bind(this));
+        $('.submit-button').on('click', this.loadData.bind(this));
+
     },
     tabChange: function() {
         $('.return-date-area').toggleClass('hide');
+    },
+    filterData: function(data) {
+        this.renderResults(data);
     },
     tabClick: function(event) {
         var previouslySelectedId = $('.tab-container .tab-active-radio:checked').attr('id');
@@ -33,28 +51,35 @@ var ticketHereApp = {
         $('.search-area, .result-area').outerHeight(window.innerHeight - $('#header').height());
     },
     loadData: function() {
-
-        $.when($.ajax("flight_data.json"))
-            .then(this.successCallback.bind(this), this.errorCallback.bind(this));
-
+        var options = {
+            url: 'flight_data.json',
+            successCallback: this.filterData
+        };
+        this.callAjax(options);
     },
     renderResults: function(data) {
-        console.log(data);
-        var compiled = _.template(resultTemplate);
+        var compiled = _.template(resultTemplate, { 'imports': { 'moment': moment } });
         $('.matching-list').html(compiled({ 'list': data }));
     },
     successCallback: function(data) {
-        this.renderResults(data);
+        this.filterData(data);
 
     },
     errorCallback: function(error) {
         console.log("Network Error, Please try after sometime.");
     },
-    loadAutoComplete: function() {
+    createAutoComplete: function(data) {
+
         $('.origin-autoComplete').autoComplete({
             minChars: 1,
             source: function(term, suggest) {
-                suggest(["aa", "bb"]);
+                suggest(_.map(data, 'origin'));
+            }
+        });
+        $('.destination-autoComplete').autoComplete({
+            minChars: 1,
+            source: function(term, suggest) {
+                suggest(_.map(data, 'destination'));
             }
         });
     },

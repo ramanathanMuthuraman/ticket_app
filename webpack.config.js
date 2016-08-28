@@ -18,7 +18,8 @@ module.exports = {
             'lodash': __dirname + '/bower_components/lodash/lodash.js',
             'autoComplete': __dirname + '/bower_components/jquery-auto-complete/jquery.auto-complete.js',
             'flatpickr': __dirname + '/bower_components/flatpickr/dist/flatpickr.js',
-            'jRange': __dirname + '/bower_components/jRange/jquery.range.js'
+            'jRange': __dirname + '/bower_components/jRange/jquery.range.js',
+            'moment': __dirname + '/bower_components/moment/min/moment.min.js'
         }
     },
     devServer: {
