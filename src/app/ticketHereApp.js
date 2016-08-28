@@ -16,7 +16,7 @@ var ticketHereApp = {
         this.resultData = [];
     },
     setDimension: function() {
-        $('.search-area, .result-area').outerHeight(window.innerHeight - 60);
+        $('.search-area, .result-area').outerHeight(window.innerHeight - $('#header').height());
     },
     loadData: function() {
 
@@ -53,7 +53,7 @@ var ticketHereApp = {
         new Flatpickr($('.form-returnDateTime').get(0), options);
     },
     createPriceSlider: function() {
-        var width = $('.price-filter-area').width() - ($('.price-filter-area').width() * 0.05);
+        var width = $('.price-filter-area').width() - ($('.price-filter-area').width() * 0.04);
         $('.slider-input').jRange({
             from: 0,
             to: 100,

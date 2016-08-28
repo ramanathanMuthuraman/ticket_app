@@ -69,10 +69,6 @@ body {
     .flex-row;
 }
 
-.search-area-wrapper {
-    height: 660px;
-}
-
 .search-area {
     overflow-y: auto;
     .flex-column;
@@ -175,4 +171,21 @@ body {
     margin: @element-margin 0;
     padding: @element-padding;
     padding-bottom: 0;
+}
+
+@media only screen and (max-device-width: 768px) {
+    body {
+        overflow-y: auto;
+    }
+    .content {
+        .flex-column;
+    }
+    .search-area {
+        width: 96%;
+        overflow-y: visible;
+    }
+    .result-area {
+        width: 100%;
+        overflow-y: visible;
+    }
 }
