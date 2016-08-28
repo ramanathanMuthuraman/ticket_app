@@ -36,9 +36,57 @@ var ticketHereApp = {
     },
     tabChange: function() {
         $('.return-date-area').toggleClass('hide');
+        $('.matching-list').empty();
+    },
+    clearResultArea: function() {
+        $('.matching-list').empty();
     },
     filterData: function(data) {
-        this.renderResults(data);
+        this.clearResultArea();
+        var activeTabId = this.getActiveTab();
+        var filteredWithDepartureDate = [],
+            filteredWithReturnDate = [],
+            filteredData = [];
+        filteredWithDepartureDate = data.filter(function(item) {
+            if (item.origin === $('.origin-autoComplete').val() &&
+                item.destination === $('.destination-autoComplete').val() &&
+                moment(item.departure).isSame(moment($('.form-departureDateTime').val()), 'day')) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        if (activeTabId === "tab2") {
+            filteredWithReturnDate = data.filter(function(item) {
+                if (item.origin === $('.destination-autoComplete').val() &&
+                    item.destination === $('.origin-autoComplete').val() &&
+                    moment(item.departure).isSame(moment($('.form-returnDateTime').val()), 'day')) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            });
+        }
+        if (filteredWithDepartureDate.length) {
+            filteredData = filteredData.concat(filteredWithDepartureDate);
+        }
+        if (filteredWithReturnDate.length) {
+            filteredData = filteredData.concat(filteredWithReturnDate);
+        }
+        if (filteredData.length) {
+            this.appendHeader();
+            this.renderResults(filteredData);
+        } else {
+            this.showNoResultsFound();
+        }
+    },
+    appendHeader: function() {
+
+    },
+    showNoResultsFound: function() {
+        $("<div/>", { "class": "large-label-style" }).html("No records found").appendTo('.matching-list');
+
     },
     getActiveTab: function() {
         return $('.tab-container .tab-active-radio:checked').attr('id');
@@ -94,7 +142,7 @@ var ticketHereApp = {
     },
     renderResults: function(data) {
         var compiled = _.template(resultTemplate, { 'imports': { 'moment': moment } });
-        $('.matching-list').html(compiled({ 'list': data }));
+        $('.matching-list').append(compiled({ 'list': data }));
     },
     errorCallback: function(error) {
         console.log("Network Error, Please try after sometime.");
