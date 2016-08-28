@@ -14,6 +14,17 @@ var ticketHereApp = {
         this.createPriceSlider();
         this.setDimension();
         this.resultData = [];
+        this.bindEvents();
+    },
+    bindEvents: function() {
+        $('.tab-header').on('click', this.tabChange.bind(this));
+    },
+    tabChange: function(event) {
+        var previouslySelectedId = $('.tab-container .tab-active-radio:checked').attr('id');
+        var currentlySelectedId = $(event.currentTarget).attr('for');
+        if (previouslySelectedId !== currentlySelectedId) {
+            $('.return-date-area').toggleClass('hide');
+        }
     },
     setDimension: function() {
         $('.search-area, .result-area').outerHeight(window.innerHeight - $('#header').height());
