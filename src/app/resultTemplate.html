@@ -15,11 +15,11 @@
             </div>
             <div class="small-label-style">
                 Depart :
-                <%- moment(item.departure).utcOffset("+05:30").format('hh:mm A') %>
+                <%- moment(item.departure).format('hh:mm A') %>
             </div>
             <div class="small-label-style">
                 Arrive :
-                <%- moment(item.arrival).utcOffset("+05:30").format('hh:mm A') %>
+                <%- moment(item.arrival).format('hh:mm A') %>
             </div>
         </div>
         <% }); %>

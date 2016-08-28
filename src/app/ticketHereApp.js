@@ -31,7 +31,7 @@ var ticketHereApp = {
     },
     bindEvents: function() {
         $('.tab-header').on('click', this.tabClick.bind(this));
-        $('.submit-button').on('click', this.loadData.bind(this));
+        $('.submit-button').on('click', this.getUserInput.bind(this));
 
     },
     tabChange: function() {
@@ -40,8 +40,11 @@ var ticketHereApp = {
     filterData: function(data) {
         this.renderResults(data);
     },
+    getActiveTab: function() {
+        return $('.tab-container .tab-active-radio:checked').attr('id');
+    },
     tabClick: function(event) {
-        var previouslySelectedId = $('.tab-container .tab-active-radio:checked').attr('id');
+        var previouslySelectedId = this.getActiveTab();
         var currentlySelectedId = $(event.currentTarget).attr('for');
         if (previouslySelectedId !== currentlySelectedId) {
             this.tabChange();
@@ -49,6 +52,38 @@ var ticketHereApp = {
     },
     setDimension: function() {
         $('.search-area, .result-area').outerHeight(window.innerHeight - $('#header').height());
+    },
+    isFormValid: function() {
+        var activeTabId = this.getActiveTab();
+        var isFormValid = true;
+        var fieldsToValidate = [".origin-autoComplete", ".destination-autoComplete", ".form-departureDateTime"];
+        if (activeTabId === "tab2") {
+            fieldsToValidate.push(".form-returnDateTime");
+        } else {
+            if (fieldsToValidate.indexOf('.form-returnDateTime') >= 0) {
+                fieldsToValidate.splice(".form-returnDateTime", 1);
+            }
+
+        }
+        $(fieldsToValidate).each(function() {
+            if ($(this).val().length === 0) {
+                $(this).next().removeClass('hide');
+                isFormValid = false;
+            } else {
+                $(this).next().addClass('hide');
+            }
+        });
+
+        return isFormValid;
+
+    },
+    getUserInput: function() {
+        if (this.isFormValid()) {
+            var origin = $('.origin-autoComplete').val();
+            var destination = $('.destination-autoComplete').val();
+            var departureTime = $(".form-departureDateTime").val();
+            this.loadData();
+        }
     },
     loadData: function() {
         var options = {
@@ -61,23 +96,19 @@ var ticketHereApp = {
         var compiled = _.template(resultTemplate, { 'imports': { 'moment': moment } });
         $('.matching-list').html(compiled({ 'list': data }));
     },
-    successCallback: function(data) {
-        this.filterData(data);
-
-    },
     errorCallback: function(error) {
         console.log("Network Error, Please try after sometime.");
     },
     createAutoComplete: function(data) {
 
         $('.origin-autoComplete').autoComplete({
-            minChars: 1,
+            minChars: 0,
             source: function(term, suggest) {
                 suggest(_.map(data, 'origin'));
             }
         });
         $('.destination-autoComplete').autoComplete({
-            minChars: 1,
+            minChars: 0,
             source: function(term, suggest) {
                 suggest(_.map(data, 'destination'));
             }
