@@ -1,6 +1,7 @@
 'use strict';
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var PORT = 9000;
@@ -15,6 +16,7 @@ module.exports = {
         alias: {
             'jquery': __dirname + '/bower_components/jquery/dist/jquery.js',
             'lodash': __dirname + '/bower_components/lodash/lodash.js',
+            'autoComplete': __dirname + '/bower_components/jquery-auto-complete/jquery.auto-complete.js',
             'flatpickr': __dirname + '/bower_components/flatpickr/dist/flatpickr.js',
             'jRange': __dirname + '/bower_components/jRange/jquery.range.js'
         }
@@ -54,6 +56,9 @@ module.exports = {
         }]
     },
     plugins: [
+        new CopyWebpackPlugin([
+            { from: 'flight_data.json', to: 'flight_data.json' }
+        ]),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"

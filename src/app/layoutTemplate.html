@@ -1,0 +1,44 @@
+<header id="header">
+    <a href="index.html" class="logo">
+        <h2 class="main_title">FLIGHT</h2>
+        <h4 class="description">SEARCH ENGINE</h4>
+    </a>
+</header>
+<div class="content">
+    <section class="search-area">
+        <div class="search-area-wrapper">
+            <div class="tab-container">
+                <input id="tab1" type="radio" class="tab-active-radio" name="tabs" checked>
+                <label class="tab-header" for="tab1"><span>One way</span></label>
+                <input id="tab2" type="radio" class="tab-active-radio" name="tabs">
+                <label class="tab-header" for="tab2"><span>Return</span></label>
+            </div>
+            <div class="form-area">
+                <form class="form-serch">
+                    <label class="form-label">Enter Origin</label>
+                    <input class="form-input origin-autoComplete" type="text/">
+                    <label class="form-label">Enter Destination</label>
+                    <input class="form-input" type="text/">
+                    <label class="form-label">Enter Departure Date</label>
+                    <input class="form-input form-departureDateTime" type="text/">
+                    <label class="form-label">Enter Return Date</label>
+                    <input class="form-input form-returnDateTime" type="text/">
+                    <label class="form-label">Passengers</label>
+                    <input class="form-input" type="text/">
+                    <input class="form-button" type="button" value="Search"></input>
+                </form>
+            </div>
+            <div class="price-filter-area">
+                <h2>Refine Flight Search</h2>
+                <input type="hidden" class="slider-input" value="23" />
+            </div>
+        </div>
+    </section>
+    <section class="result-area">
+        <div class="results">
+            <div class="secondary-title">Results</div>
+            <div class="matching-list">
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,26 @@
+<div class="ticket-list">
+    <% _.forEach(list, function(item) { %>
+        <div class="ticket-list-item">
+            <div class="large-label-style">
+                Rs
+                <%- item.price %>
+            </div>
+            <div class="small-label-style">
+                <%- item.airlineCode %>-
+                    <%- item.flightNumber %>
+            </div>
+            <div class="medium-label-style">
+                <%- item.origin %> &gt;
+                    <%- item.destination %>
+            </div>
+            <div class="small-label-style">
+                Depart :
+                <%- item.departure %>
+            </div>
+            <div class="small-label-style">
+                Arrive :
+                <%- item.arrival %>
+            </div>
+        </div>
+        <% }); %>
+</div>

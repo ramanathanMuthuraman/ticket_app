@@ -1,12 +1,48 @@
 'use strict';
-var template = require('./template.html');
+var layoutTemplate = require('./layoutTemplate.html');
+var resultTemplate = require('./resultTemplate.html');
+var autoComplete = require('autoComplete');
+var _ = require('lodash');
 var Flatpickr = require('flatpickr');
 var jRange = require('jRange');
 var ticketHereApp = {
     init: function() {
-        $("#main").html(template);
+        this.loadData();
+        $("#main").html(layoutTemplate);
+        this.loadAutoComplete();
         this.createDateTimePicker();
         this.createPriceSlider();
+        this.setDimension();
+        this.resultData = [];
+    },
+    setDimension: function() {
+        $('.search-area, .result-area').outerHeight(window.innerHeight - 60);
+    },
+    loadData: function() {
+
+        $.when($.ajax("flight_data.json"))
+            .then(this.successCallback.bind(this), this.errorCallback.bind(this));
+
+    },
+    renderResults: function(data) {
+        console.log(data);
+        var compiled = _.template(resultTemplate);
+        $('.matching-list').html(compiled({ 'list': data }));
+    },
+    successCallback: function(data) {
+        this.renderResults(data);
+
+    },
+    errorCallback: function(error) {
+        console.log("Network Error, Please try after sometime.");
+    },
+    loadAutoComplete: function() {
+        $('.origin-autoComplete').autoComplete({
+            minChars: 1,
+            source: function(term, suggest) {
+                suggest(["aa", "bb"]);
+            }
+        });
     },
     createDateTimePicker: function() {
         var options = {
@@ -17,7 +53,7 @@ var ticketHereApp = {
         new Flatpickr($('.form-returnDateTime').get(0), options);
     },
     createPriceSlider: function() {
-        var width = $('.price-filter-area').width();
+        var width = $('.price-filter-area').width() - ($('.price-filter-area').width() * 0.05);
         $('.slider-input').jRange({
             from: 0,
             to: 100,
