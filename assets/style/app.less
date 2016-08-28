@@ -172,9 +172,52 @@ body {
 
 .ticket-list-item {
     border: 1px solid @panel-color;
-    margin: @element-margin 0;
+    margin-top: @element-margin;
     padding: @element-padding;
     padding-bottom: 0;
+    cursor: pointer;
+}
+
+.ticket-list-item:hover {
+    background: #ccc;
+}
+
+.search-result-header {
+    .flex-row;
+}
+
+.search-location-header {
+    margin: @element-margin 0;
+    width: 50%;
+}
+
+.search-time-header {
+    margin-top: @element-margin;
+    font-size: @small-font-size;
+    width: 50%;
+    .flex-column;
+    align-items: flex-end;
+}
+
+.ticket-list-item {
+    .flex-row;
+}
+
+.ticket-info {
+    .flex-column;
+    width: @width-large;
+}
+
+.book-button-area {
+    width: @width-small;
+    align-items: center;
+    .flex;
+    margin-bottom: 4%;
+    justify-content: flex-end;
+}
+
+.book-button-area input {
+    margin-top: 0 !important;
 }
 
 @media only screen and (max-device-width: 768px) {

@@ -1,25 +1,51 @@
 <div class="ticket-list">
+    <div class="search-result-header">
+        <div class="search-location-header">
+            <h2 class="large-label-style">
+            <%- list.origin %> &gt; <%- list.destination %>
+            <% if(list.returnDate) { %>
+                &gt;  <%- list.origin %>
+            <% } %>
+        </h2>
+        </div>
+        <div class="search-time-header">
+            <div>Depart :
+                <%- moment(list.departureDate).format('DD MMM YYYY') %>
+            </div>
+            <% if(list.returnDate) { %>
+                <div>
+                    Return :
+                    <%- moment(list.returnDate).format('DD MMM YYYY') %>
+                </div>
+                <% } %>
+        </div>
+    </div>
     <% _.forEach(list, function(item) { %>
         <div class="ticket-list-item">
-            <div class="large-label-style">
-                Rs
-                <%- item.price %>
+            <div class="ticket-info">
+                <div class="large-label-style">
+                    Rs
+                    <%- item.price %>
+                </div>
+                <div class="small-label-style">
+                    <%- item.airlineCode %>-
+                        <%- item.flightNumber %>
+                </div>
+                <div class="medium-label-style">
+                    <%- item.origin %> &gt;
+                        <%- item.destination %>
+                </div>
+                <div class="small-label-style">
+                    Depart :
+                    <%- moment(item.departure).format('hh:mm A') %>
+                </div>
+                <div class="small-label-style">
+                    Arrive :
+                    <%- moment(item.arrival).format('hh:mm A') %>
+                </div>
             </div>
-            <div class="small-label-style">
-                <%- item.airlineCode %>-
-                    <%- item.flightNumber %>
-            </div>
-            <div class="medium-label-style">
-                <%- item.origin %> &gt;
-                    <%- item.destination %>
-            </div>
-            <div class="small-label-style">
-                Depart :
-                <%- moment(item.departure).format('hh:mm A') %>
-            </div>
-            <div class="small-label-style">
-                Arrive :
-                <%- moment(item.arrival).format('hh:mm A') %>
+            <div class="book-button-area">
+                <input class="form-button" type="button" value="BOOK THIS FLIGHT" />
             </div>
         </div>
         <% }); %>

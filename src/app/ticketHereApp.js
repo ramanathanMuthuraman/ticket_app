@@ -69,19 +69,34 @@ var ticketHereApp = {
             });
         }
         if (filteredWithDepartureDate.length) {
+
             filteredData = filteredData.concat(filteredWithDepartureDate);
+
         }
         if (filteredWithReturnDate.length) {
+
             filteredData = filteredData.concat(filteredWithReturnDate);
         }
         if (filteredData.length) {
-            this.appendHeader();
+            filteredData.origin = $('.origin-autoComplete').val();
+            filteredData.departureDate = $('.form-departureDateTime').val();
+            filteredData.destination = $('.destination-autoComplete').val();
+            if (activeTabId === "tab2") {
+                filteredData.returnDate = $('.form-returnDateTime').val();
+            }
             this.renderResults(filteredData);
         } else {
             this.showNoResultsFound();
         }
     },
     appendHeader: function() {
+        var origin = $('.origin-autoComplete').val();
+        var destination = $('.destination-autoComplete').val();
+        var activeTabId = this.getActiveTab();
+        if (activeTabId === "tab2") {
+            var returnDate = $('.form-returnDateTime').val();
+        }
+        $("<div/>", { "class": "filtered-result-header" }).appendTo('.matching-list');
 
     },
     showNoResultsFound: function() {
@@ -142,7 +157,7 @@ var ticketHereApp = {
     },
     renderResults: function(data) {
         var compiled = _.template(resultTemplate, { 'imports': { 'moment': moment } });
-        $('.matching-list').append(compiled({ 'list': data }));
+        $('.matching-list').html(compiled({ 'list': data }));
     },
     errorCallback: function(error) {
         console.log("Network Error, Please try after sometime.");
