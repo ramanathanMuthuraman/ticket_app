@@ -17,13 +17,16 @@ var ticketHereApp = {
         this.bindEvents();
     },
     bindEvents: function() {
-        $('.tab-header').on('click', this.tabChange.bind(this));
+        $('.tab-header').on('click', this.tabClick.bind(this));
     },
-    tabChange: function(event) {
+    tabChange: function() {
+        $('.return-date-area').toggleClass('hide');
+    },
+    tabClick: function(event) {
         var previouslySelectedId = $('.tab-container .tab-active-radio:checked').attr('id');
         var currentlySelectedId = $(event.currentTarget).attr('for');
         if (previouslySelectedId !== currentlySelectedId) {
-            $('.return-date-area').toggleClass('hide');
+            this.tabChange();
         }
     },
     setDimension: function() {
