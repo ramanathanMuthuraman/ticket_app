@@ -14,11 +14,11 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'jquery': __dirname + '/bower_components/jquery/dist/jquery.js',
-            'lodash': __dirname + '/bower_components/lodash/lodash.js',
-            'autoComplete': __dirname + '/bower_components/jquery-auto-complete/jquery.auto-complete.js',
-            'flatpickr': __dirname + '/bower_components/flatpickr/dist/flatpickr.js',
-            'jRange': __dirname + '/bower_components/jRange/jquery.range.js',
+            'jquery': __dirname + '/bower_components/jquery/dist/jquery.min.js',
+            'lodash': __dirname + '/bower_components/lodash/dist/lodash.min.js',
+            'autoComplete': __dirname + '/bower_components/jquery-auto-complete/jquery.auto-complete.min.js',
+            'flatpickr': __dirname + '/bower_components/flatpickr/dist/flatpickr.min.js',
+            'jRange': __dirname + '/bower_components/jRange/jquery.range-min.js',
             'moment': __dirname + '/bower_components/moment/min/moment.min.js'
         }
     },

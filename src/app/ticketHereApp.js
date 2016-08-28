@@ -100,7 +100,7 @@ var ticketHereApp = {
 
     },
     showNoResultsFound: function() {
-        $("<div/>", { "class": "large-label-style" }).html("No records found").appendTo('.matching-list');
+        $("<div/>", { "class": "no-data-message" }).html("No records found").appendTo('.matching-list');
 
     },
     getActiveTab: function() {
