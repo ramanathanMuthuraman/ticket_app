@@ -6,8 +6,8 @@
     "availableSeats": 116,
     "destination": "DEL",
     "price": 6733,
-    "departure": "2016-08-01T10:59:00.000Z",
-    "arrival": "2016-08-01T13:32:00.000Z",
+    "departure": "2016-09-01T10:59:00.000Z",
+    "arrival": "2016-09-01T13:32:00.000Z",
     "duration": "2h 33m",
     "operationalDays": [
         0,
@@ -21,8 +21,8 @@
     "availableSeats": 53,
     "destination": "PNQ",
     "price": 8713,
-    "departure": "2016-08-03T08:17:00.000Z",
-    "arrival": "2013-08-03T10:54:00.000Z",
+    "departure": "2016-09-03T08:17:00.000Z",
+    "arrival": "2013-09-03T10:54:00.000Z",
     "duration": "2h 37m",
     "operationalDays": [
         7

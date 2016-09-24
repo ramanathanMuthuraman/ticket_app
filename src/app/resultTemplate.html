@@ -1,5 +1,18 @@
 <div class="ticket-list">
-    <div class="search-result-header">
+    <div class="flex-row resultset-filter">
+    <h2 class="large-label-style">Sort By Price</h2>
+    <label><input type="radio" class="sortType" value="ASC" name="sort"
+    <% if(list.sortAscending) { %>
+               checked
+    <% } %>
+             />Ascending</label>
+    <label><input type="radio" class="sortType" value="DESC" name="sort"
+ <% if(!list.sortAscending) { %>
+               checked
+    <% } %>
+/>Descending</label>
+</div>
+ <div class="search-result-header">
         <div class="search-location-header">
             <h2 class="large-label-style">
             <%- list.origin %> &gt; <%- list.destination %>

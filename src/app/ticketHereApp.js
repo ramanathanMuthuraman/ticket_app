@@ -32,6 +32,30 @@ var ticketHereApp = {
     bindEvents: function() {
         $('.tab-header').on('click', this.tabClick.bind(this));
         $('.submit-button').on('click', this.getUserInput.bind(this));
+        $('.results').on('click','.sortType',this.getSortType.bind(this));
+    },
+    getSortType:function(event){
+        var sortType = event.target.value;
+        var sortedData = [];
+        if(this.filteredData){
+            if(event.target.value === 'DESC'){
+                this.filteredData.sortAscending = false;
+                sortedData = this.filteredData.sort(function(a,b){
+                    return a.price < b.price;
+                });
+            }
+            else{
+                this.filteredData.sortAscending = true;
+                sortedData =  this.filteredData.sort(function(a,b){
+                    return a.price > b.price;
+                });
+            }
+            this.clearResultArea();
+            this.renderResults(sortedData);
+        }
+        else{
+            console.log("No results available");
+        }
 
     },
     tabChange: function() {
@@ -84,7 +108,9 @@ var ticketHereApp = {
             if (activeTabId === "tab2") {
                 filteredData.returnDate = $('.form-returnDateTime').val();
             }
-            this.renderResults(filteredData);
+            filteredData.sortAscending = true;
+            this.filteredData = filteredData;
+            this.renderResults(this.filteredData);
         } else {
             this.showNoResultsFound();
         }
