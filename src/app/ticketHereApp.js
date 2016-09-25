@@ -34,11 +34,10 @@ var ticketHereApp = {
         $('.submit-button').on('click', this.getUserInput.bind(this));
         $('.results').on('click','.sortType',this.getSortType.bind(this));
     },
-    getSortType:function(event){
-        var sortType = event.target.value;
+    sortData:function(sortType){
         var sortedData = [];
         if(this.filteredData){
-            if(event.target.value === 'DESC'){
+            if(sortType === 'DESC'){
                 this.filteredData.sortAscending = false;
                 sortedData = this.filteredData.sort(function(a,b){
                     return a.price < b.price;
@@ -56,7 +55,9 @@ var ticketHereApp = {
         else{
             console.log("No results available");
         }
-
+    },
+    getSortType:function(event){
+        this.sortData(event.target.value);
     },
     tabChange: function() {
         $('.return-date-area').toggleClass('hide');
